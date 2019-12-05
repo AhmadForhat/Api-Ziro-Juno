@@ -21,14 +21,14 @@ const apiJuno = request({
 },(err, res, body) =>{
     if(err){
         console.log(err);
+        return err
     }else{
-        console.log(JSON.stringify(body, undefined, 1));
+        console.log(JSON.stringify({ body }, undefined, 1));
+        app.get('/', (req,res) => {
+            res.json({ body })
+        })
     }
 });
-
-app.get('/', (req,res) => {
-    res.json(apiJuno)
-})
 
 app.listen(3000, () => {
     console.log('Sucess')
