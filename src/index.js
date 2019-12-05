@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs')
 const request = require('request');
 
 // Teste pra ficar mais "organizado"
@@ -14,6 +15,10 @@ const endPaymentConfirmation = '&endPaymentConfirmation=05/12/2019';
 const query = token+beginDueDate+endDueDate+beginPaymentDate+endPaymentDate+beginPaymentConfirmation+endPaymentConfirmation;
 let url = basicUrl + query;
 
+// Salvar a requisição em uma pasta local.
+
+// request(url).pipe(fs.createWriteStream('boletos.json'))
+
 
 const apiJuno = request({
     url: url,
@@ -27,10 +32,12 @@ const apiJuno = request({
         app.get('/', (req,res) => {
             res.json({ body })
         })
+        app.post('/', (req,res) => {
+            res.json({ body })
+        })
     }
 });
 
 app.listen(3000, () => {
     console.log('Sucess')
 })
-
