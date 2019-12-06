@@ -1,1 +1,34 @@
-{"data":{"charges":[]},"success":true}
+{
+    "data": {
+      "charges": [
+        {
+          "code": 80049554,
+          "reference": "22eab",
+          "dueDate": "22/07/2019",
+          "checkoutUrl": "https://sandbox.boletobancario.com/boletofacil/checkout/7AC18C2B9712BB6054CEF8FB363B15780DEB92F572C01D51",
+          "link": "https://sandbox.boletobancario.com/boletofacil/charge/boleto.pdf?token=511995:m:2d615f790d83be482b2dc5a7051d048df9122040bc0a097a810fcbeaf4afbffb",
+          "installmentLink": "https://sandbox.boletobancario.com/boletofacil/charge/boleto.pdf?token=80049554:8ec6023bad993f23e30cc162d4074a4703bdda695542ec32f23eb96fd958e367",
+          "payNumber": "string",
+          "billetDetails": {
+            "bankAccount": "0655/46480-8",
+            "ourNumber": "176/80049554-2",
+            "barcodeNumber": "34194795800000020001768004955420655464808000",
+            "portfolio": "176"
+          },
+          "payments": [
+            {
+              "id": 0,
+              "amount": 0,
+              "date": "2019-12-06",
+              "fee": 0,
+              "type": "string",
+              "status": "string",
+              "creditCardId": "string"
+            }
+          ],
+          "amount": 10
+        }
+      ]
+    },
+    "success": true
+  }

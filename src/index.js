@@ -17,7 +17,7 @@ let url = basicUrl + query;
 
 // Salvar a requisição em uma pasta local.
 
-// request(url).pipe(fs.createWriteStream('boletos.json')) // https://github.com/request/request
+// request(url).pipe(fs.createWriteStream('boletos2.json')) // https://github.com/request/request
 
 
 const apiJuno = request({
@@ -30,15 +30,14 @@ const apiJuno = request({
     }else{
         console.log(JSON.stringify({ body }, undefined, 1));
         app.get('/', (req,res) => {
-            res.json([ body.data.charges.payments ])
+            res.json([ body.data.charges ])
         })
         app.post('/post', (req,res) => {
-            res.json([ body.data.charges.payments ])
+            res.json([ body.data.charges ])
         })
     }
 });
 
 app.listen(3000, () => {
     console.log('Sucess');
-    console.log(apiJuno);
 })
