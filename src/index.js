@@ -41,8 +41,13 @@ app.get('/consulta-pagamentos', (req,res) => {
             const id = body.data.charges[i];
             ids.push(id.code)
             }
+            const date = [];
+            for(let i in body.data.charges){
+            const id = body.data.charges[i];
+            date.push(id.dueDate)
+            }
             console.log(JSON.stringify({ body }))
-            res.json(ids);
+            res.json([ ids, date ]);
     }})
 })
 
