@@ -29,14 +29,20 @@ app.get('/consulta-pagamentos', (req,res) => {
         if(e){
             if(e.code == 'ENOTFOUND')
                 console.log(e);
-                res.json("Nome do erro: " + e.code+ " " + "Descrição: " + "Url não encontrada");
+                res.json({"Nome do erro": e.code,
+                            "Descrição": "Url não encontrada"});
             if(e.code != 'ENOTFOUND'){
                 console.log(e);
                 res.json(e.code)
             }
         }else{
-        console.log(JSON.stringify({ body }))
-        res.json(body);
+            const ids = [];
+            for(let i in body.data.charges){
+            const id = body.data.charges[i];
+            ids.push(id.code)
+            }
+            console.log(JSON.stringify({ body }))
+            res.json(ids);
     }})
 })
 
