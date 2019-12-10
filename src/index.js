@@ -54,7 +54,7 @@ function requisicao(){
                 const id = body.data.charges[i];
                 date.push(id.dueDate)
             }
-                return resolve([ ids, date ]);
+                return resolve({ ids, date });
             }
         })
     })
