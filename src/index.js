@@ -73,6 +73,7 @@ function getApi(body){
 main()
 async function main(){
     try{
+        console.time('medida-promise')
         const resultado = await requisicao()
         const puxaApi = await getApi(resultado)
         console.log(resultado)
@@ -80,6 +81,7 @@ async function main(){
     catch(error){
         console.log('Deu error' , error)
     }
+    console.timeEnd('medida-promise')
 }
 
 // Porta onde o servidor esta sendo executado
