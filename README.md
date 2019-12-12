@@ -5,6 +5,3 @@
 
 ## Objetivo
 >Esse projeto tem como objetivo inicial a criação de uma API Rest que seja capaz de automatizar a geração de relatórios para a planilha do google sheets onde o financeiro da empresa controla as transações de cobranças e faz seu devido gerenciamento.
-
-## Primeiros Passos
-> Primeiramente foi definido que o projeto seria feito em node.js e publicado em um servidor que atualizaria automaticamente utilizando [cronjob](https://www.npmjs.com/package/cron), também foi definido que utilizariamos [express](https://expressjs.com/en/5x/api.html) e [request](https://www.npmjs.com/package/request) para fazer as HTTP do servidor.
