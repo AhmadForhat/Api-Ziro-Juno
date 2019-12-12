@@ -61,13 +61,13 @@ app.post('/geracao-boleto', async (req,res) => {
         json:true
     };
 
-    rp(options)
-        .then(function (body){
-            res.json({body})
-        })
-        .catch(function (err){
-            res.json({err})
-        })
+    try{
+        let data = await rp(options)
+        res.json({data})
+    }
+    catch(err){
+        res.json({err})
+    }
     })
 
 // Consulta de Saldo a transferir
@@ -83,8 +83,8 @@ app.get('/consulta-saldo', async (req,res) => {
         json:true
     };
     try{
-        const data2 = await rp(options)
-        res.json({ data2 })
+        let data = await rp(options)
+        res.json({ data })
     }
     catch(err){
         res.json({ err })
@@ -104,7 +104,7 @@ app.post('/transferencia-saldo', async (req,res) => {
         json:true
     };
     try{
-        const data = await rp(options)
+        let data = await rp(options)
         res.json({ data })
     }
     catch(err){
