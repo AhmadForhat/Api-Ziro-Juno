@@ -2,17 +2,24 @@ const express = require('express');
 const app = express();
 const querystring = require('querystring');
 const rp = require('request-promise-native');
+require('dotenv').config()
+
+// Validação do token
+const basicAuth = require('express-basic-auth')
+ 
+app.use(basicAuth({
+    users: {
+        'admin': 'supersecret',
+    }
+}))
 
 // Consulta de pagamentos realizados
-
-app.get('/', (req,res) => {
-    res.send("Bem vindo!")
-})
 
 app.get('/consulta-pagamentos', async (req,res) => {
     const basicUrl = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/list-charges';
     const query = querystring.stringify(req.query);
-    const url = `${basicUrl}?${query}`;
+    const url = `${basicUrl}?token=${process.env.TOKEN}&${query}`;
+    console.log(url)
     // console.log(Object.keys(req));
     console.log(req.route.path)
     let options = {
@@ -53,7 +60,7 @@ app.get('/consulta-pagamentos', async (req,res) => {
 app.post('/geracao-boleto', async (req,res) => {
     const basicUrl2 = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/issue-charge';
     const query2 = querystring.stringify(req.query);
-    const url2 = `${basicUrl2}?${query2}`;
+    const url2 = `${basicUrl2}?token=${process.env.TOKEN}&${query2}`;
 
     let options = {
         method: 'POST',
@@ -75,7 +82,7 @@ app.post('/geracao-boleto', async (req,res) => {
 app.get('/consulta-saldo', async (req,res) => {
     const basicUrl3 = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/fetch-balance';
     const query3 = querystring.stringify(req.query);
-    const url3 = `${basicUrl3}?${query3}`;
+    const url3 = `${basicUrl3}?token=${process.env.TOKEN}&${query3}`;
 
     let options = {
         method: 'GET',
@@ -96,7 +103,7 @@ app.get('/consulta-saldo', async (req,res) => {
 app.post('/transferencia-saldo', async (req,res) => {
     const basicUrl4 = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/fetch-balance';
     const query4 = querystring.stringify(req.query);
-    const url4 = `${basicUrl4}?${query4}`;
+    const url4 = `${basicUrl4}?token=${process.env.TOKEN}&${query4}`;
 
     let options = {
         method: 'POST',
@@ -112,4 +119,32 @@ app.post('/transferencia-saldo', async (req,res) => {
     }
 })
 
-app.listen(process.env.PORT || 3000, () => console.log(`Listening on ${process.env.PORT || 3000}`))
+// // API 2.0
+
+// //Gerar token
+
+// app.post('/gerar-token', async (req,res) => {
+//     const basicUrl5 = 'https://sandbox.boletobancario.com/api-integration/oauth/token';
+//     const query5 = querystring.stringify(req.query);
+//     const url5 = `${basicUrl5}?${query5}`;
+
+//     let options = {
+//         method: 'POST',
+//         url:url5,
+//         json:true
+//     };
+//     try{
+//         let data = await rp(options)
+//         res.json({ data })
+//     }
+//     catch(err){
+//         res.json({ err })
+//     }
+// })
+
+app.use( (req, res) => {
+	res.status(404).send('Rota inválida. Use as rotas: /submit /business-info /inscricao-estadual')
+})
+
+
+app.listen(process.env.PORT || 3000, () => console.log(`Escutando na porta ${process.env.PORT || 3000}`))
