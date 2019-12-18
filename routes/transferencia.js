@@ -19,7 +19,7 @@ router.post('/transferencia-saldo', async (req,res) => {
         res.json({ data })
     }
     catch(err){
-        res.json({ err })
+        res.json([ `Status Code: ${err.statusCode}`, `Descrição do erro: ${err.error.errorMessage}` ])
     }
 })
 module.exports = router
