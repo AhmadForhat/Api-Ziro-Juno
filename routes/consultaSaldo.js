@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const rp = require('request-promise-native');
 require('dotenv').config()
 
-router.get('/consulta-saldo', async (req,res) => {
+const consultaSaldo = async (req,res) => {
     const basicUrl = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/fetch-balance';
     const query = querystring.stringify(req.query);
     const url = `${basicUrl}?token=${process.env.TOKEN}&${query}`;
@@ -21,6 +21,6 @@ router.get('/consulta-saldo', async (req,res) => {
     catch(err){
         res.json([ `Status Code: ${err.statusCode}`, `Descrição do erro: ${err.error.errorMessage}` ])
     }
-})
+}
 
-module.exports = router
+module.exports = consultaSaldo
