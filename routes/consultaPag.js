@@ -1,6 +1,7 @@
 const querystring = require('querystring');
 const rp = require('request-promise-native');
 require('dotenv').config()
+const nossoToken = process.env.NOSSOTOKEN
 
 const consultaPag =  async (req,res) => {
     const basicUrl = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/list-charges';
@@ -14,19 +15,22 @@ const consultaPag =  async (req,res) => {
     };
 
     try {
-
-        let data = await rp(options);
-        const ids = [];
-        for(let i in data.data.charges){
-        const id = data.data.charges[i];
-        ids.push(id.code)
+        if(req.query.token == nossoToken){
+            let data = await rp(options);
+            const ids = [];
+            for(let i in data.data.charges){
+            const id = data.data.charges[i];
+            ids.push(id.code)
+            }
+            const date = [];
+            for(let i in data.data.charges){
+            const id = data.data.charges[i];
+            date.push(id.dueDate)
+            }
+            res.json([ ids, date ]);
+        }else{
+            res.send("SEU TOKEN É INVÁLIDO")
         }
-        const date = [];
-        for(let i in data.data.charges){
-        const id = data.data.charges[i];
-        date.push(id.dueDate)
-        }
-        res.json([ ids, date ]);
 
     } catch (err) {
         if(error.statusCode == 400){

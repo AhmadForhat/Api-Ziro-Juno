@@ -2,20 +2,20 @@ const express = require('express')
 const app = express();
 require('dotenv').config()
 
-// Validação do token
-const basicAuth = require('express-basic-auth')
-const pdw = process.env.pdw;
+// // Validação do token
+// const basicAuth = require('express-basic-auth')
+// const pdw = process.env.pdw;
 
-app.use(basicAuth({
-    users: { ahmad: pdw },
-    unauthorizedResponse: 'Erro na autenticação do usuário'
-}))
+// app.use(basicAuth({
+//     users: { ahmad: pdw },
+//     unauthorizedResponse: 'Erro na autenticação do usuário'
+// }))
 
 // gerar token com base64
 
 // End Points da API Juno 1.0
 
-const consultaPag = require(`./routes/consultaPag.js`)
+const consultaPag = require('./routes/consultaPag.js')
 const geracaoBoletos = require('./routes/geracaoBoletos.js')
 const consultaSaldo = require('./routes/consultaSaldo.js')
 const transferencia = require('./routes/transferencia')
