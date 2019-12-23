@@ -1,12 +1,13 @@
-const querystring = require('querystring');
-const rp = require('request-promise-native');
+const querystring = require('querystring')
+const rp = require('request-promise-native')
+const gerarUrl = require('./basicUrl.js')
 require('dotenv').config()
 const nossoToken = process.env.NOSSOTOKEN
 
 const consultaPag =  async (req,res) => {
-    const basicUrl = 'https://sandbox.boletobancario.com/boletofacil/integration/api/v1/list-charges';
-    const query = querystring.stringify(req.query);
-    const url = `${basicUrl}?token=${process.env.TOKEN}&${query}`;
+    const basicUrl = gerarUrl('list-charges')
+    const query = querystring.stringify(req.query)
+    const url = `${basicUrl}&${query}`
 
     let options = {
         method: 'GET',
@@ -15,19 +16,9 @@ const consultaPag =  async (req,res) => {
     };
 
     try {
-        if(req.query.token == nossoToken){
-            let data = await rp(options);
-            const ids = [];
-            for(let i in data.data.charges){
-            const id = data.data.charges[i];
-            ids.push(id.code)
-            }
-            const date = [];
-            for(let i in data.data.charges){
-            const id = data.data.charges[i];
-            date.push(id.dueDate)
-            }
-            res.json([ ids, date ]);
+        if(req.headers.token == nossoToken){
+            let data = await rp(options)
+            res.json({data});
         }else{
             res.send("SEU TOKEN É INVÁLIDO")
         }
