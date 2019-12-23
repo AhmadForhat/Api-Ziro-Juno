@@ -7,6 +7,7 @@ const basicAuth = require('express-basic-auth')
 const pdw = process.env.pdw;
 
 app.use(basicAuth({
+    // colocar o if aqui
     users: { ahmad: pdw },
     unauthorizedResponse: 'Erro na autenticação do usuário'
 }))

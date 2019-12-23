@@ -5,9 +5,7 @@ require('dotenv').config()
 const nossoToken = process.env.NOSSOTOKEN
 
 const geracaoBoletos = async (req,res) => {
-    const basicUrl = gerarUrl('issue-charge');
-    const query = querystring.stringify(req.query);
-    const url = `${basicUrl}&${query}`;
+    const url = gerarUrl('issue-charge', querystring.stringify(req.query))
 
     let options = {
         method: 'POST',

@@ -5,9 +5,7 @@ require('dotenv').config()
 const nossoToken = process.env.NOSSOTOKEN
 
 const transferenciaSaldo = async (req,res) => {
-    const basicUrl = gerarUrl('fetch-balance')
-    const query = querystring.stringify(req.query)
-    const url = `${basicUrl}&${query}`
+    const url = gerarUrl('fetch-balance', querystring.stringify(req.query))
 
     let options = {
         method: 'POST',

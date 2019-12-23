@@ -5,10 +5,7 @@ require('dotenv').config()
 const nossoToken = process.env.NOSSOTOKEN
 
 const consultaPag =  async (req,res) => {
-    const basicUrl = gerarUrl('list-charges')
-    const query = querystring.stringify(req.query)
-    const url = `${basicUrl}&${query}`
-
+    const url = gerarUrl('list-charges', querystring.stringify(req.query))
     let options = {
         method: 'GET',
         url:url,
@@ -18,7 +15,7 @@ const consultaPag =  async (req,res) => {
     try {
         if(req.headers.token == nossoToken){
             let data = await rp(options)
-            res.json({data});
+            res.json({data})
         }else{
             res.send("SEU TOKEN É INVÁLIDO")
         }
