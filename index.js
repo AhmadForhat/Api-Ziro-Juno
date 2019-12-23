@@ -6,11 +6,15 @@ require('dotenv').config()
 const basicAuth = require('express-basic-auth')
 const pdw = process.env.pdw;
 
+if(pdw == undefined){
+    app.use('*',(req,res) =>{
+        res.send('Senha não definida!')
+    })
+}else{
 app.use(basicAuth({
-    // colocar o if aqui
     users: { ahmad: pdw },
     unauthorizedResponse: 'Erro na autenticação do usuário'
-}))
+}))}
 
 // End Points da API Juno 1.0
 
