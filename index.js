@@ -31,9 +31,15 @@ app.use('/geracao-boleto', geracaoBoletos) /* Geração de boleto de cobranças 
 
 // End Points da Api Juno 2.0
 
-const geracaoToken = require('./routes/geracaoToken');
+const geracaoToken = require('./routes2/geracaoToken');
+const consultaCobrancas = require('./routes2/consultaCharges')
+const pesquisaCharges = require('./routes2/chargesId')
+const cancelCharges = require('./routes2/cancelarCharges')
 
 app.use('/geracao-token', geracaoToken)
+.use('/consulta-cobrancas', consultaCobrancas)
+.use('/pesquisa-cobrancas', pesquisaCharges)
+.use('/cancelar-cobrancas', cancelCharges)
 
 // Erro 404 de status indefinido da página
 
