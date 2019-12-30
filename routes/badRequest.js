@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 
 const badRequest = async (req, res) => {
 	console.log(res.status)
