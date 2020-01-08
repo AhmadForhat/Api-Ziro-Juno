@@ -36,7 +36,7 @@ const consultaCobrancas = require('./routes2/consultaCharges')
 const pesquisaCharges = require('./routes2/chargesId')
 const cancelCharges = require('./routes2/cancelarCharges')
 
-app.use('/geracao-token', geracaoToken)
+app.use(geracaoToken)
 .use('/consulta-cobrancas', consultaCobrancas)
 .use('/pesquisa-cobrancas', pesquisaCharges)
 .use('/cancelar-cobrancas', cancelCharges)
