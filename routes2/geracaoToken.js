@@ -18,15 +18,14 @@ const geracaoToken =  async (req,res,next) => {
     };
     try {
         let data = await rp(options)
-        console.log("Token foi gerado com sucesso!")
         res.locals.accessToken = `Bearer ${data.access_token}`
     } catch (err) {
         console.log("Deu erro")
-        if(err.error.menssage != undefined){
-            res.json(err.error.message)
-        }else{
-            res.json(err.error)
-        }
+            if(err.error != ""){
+                res.json({"Erro na geração do token": err.error})
+            }else{
+                res.json(err)
+            } 
     }
     next()
 }

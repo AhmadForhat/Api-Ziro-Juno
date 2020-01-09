@@ -14,7 +14,6 @@ const gerarOptions = (query,auth,endPoint,method) => {
         },
         json: true
     }
-        console.log("Requisição foi Gerada!")
         return rp(options)
 }
 
