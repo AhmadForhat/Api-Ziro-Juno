@@ -22,7 +22,11 @@ const geracaoToken =  async (req,res,next) => {
         res.locals.accessToken = `Bearer ${data.access_token}`
     } catch (err) {
         console.log("Deu erro")
-        res.json(`Erro na geração do token: ${err}`)
+        if(err.error.menssage != undefined){
+            res.json(err.error.message)
+        }else{
+            res.json(err.error)
+        }
     }
     next()
 }
