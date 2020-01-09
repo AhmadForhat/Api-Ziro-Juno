@@ -16,13 +16,13 @@ const geracaoToken =  async (req,res,next) => {
         url:url,
         json: true
     };
-    console.log(url)
-    console.log("teste!")
     try {
         let data = await rp(options)
+        console.log("Token foi gerado com sucesso!")
         res.locals.accessToken = `Bearer ${data.access_token}`
     } catch (err) {
         console.log("Deu erro")
+        res.json(`Erro na geração do token: ${err}`)
     }
     next()
 }

@@ -14,12 +14,8 @@ const gerarOptions = (query,auth,endPoint,method) => {
         },
         json: true
     }
-    console.log(url)
-    try {
+        console.log("Requisição foi Gerada!")
         return rp(options)
-    } catch (error) {
-        return error
-    }
 }
 
 module.exports = gerarOptions
