@@ -1,7 +1,7 @@
 const querystring = require('querystring')
 const gerarOptions = require('../utils/gerarOptions')
 
-const consultaCharges =  async (req,res) => {
+const listarCobrancas =  async (req,res) => {
     try {
         const auth = res.locals.accessToken
         const query = querystring.stringify(req.query)
@@ -16,4 +16,4 @@ const consultaCharges =  async (req,res) => {
     }
 }
 
-module.exports = consultaCharges
+module.exports = listarCobrancas

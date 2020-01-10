@@ -1,6 +1,6 @@
 const gerarOptions = require('../utils/gerarOptions')
 
-const listaCobrancas =  async (req,res) => {
+const cancelarCobranca =  async (req,res) => {
     try {
         const auth = res.locals.accessToken
         const query = " "
@@ -16,4 +16,4 @@ const listaCobrancas =  async (req,res) => {
     }
 }
 
-module.exports = listaCobrancas
+module.exports = cancelarCobranca

@@ -1,5 +1,3 @@
-const express = require('express')
-
 const basicAuth = (req,res,next) => {
     if(req.headers.authorization == process.env.basicAuth){
         next()

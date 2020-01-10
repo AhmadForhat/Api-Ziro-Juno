@@ -1,5 +1,4 @@
 const rp = require('request-promise-native')
-require('dotenv').config()
 
 const gerarToken =  async (req,res,next) => {
     const basicUrl = "https://api.juno.com.br/authorization-server/oauth/token"
