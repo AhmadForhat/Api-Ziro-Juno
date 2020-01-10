@@ -2,19 +2,10 @@ const express = require('express')
 const app = express();
 require('dotenv').config()
 
-// Validação do token
-const basicAuth = require('express-basic-auth')
-const pdw = process.env.pdw;
+// Validação do token sem basicAuth require
+const basicAuth = require('./routes/basicAuth')
 
-if(pdw == undefined){
-    app.use('*',(req,res) =>{
-        res.send('Senha não definida!')
-    })
-}else{
-app.use(basicAuth({
-    users: { ahmad: pdw },
-    unauthorizedResponse: 'Erro na autenticação do usuário'
-}))}
+app.use(basicAuth)
 
 // End Points da API Juno 1.0
 
