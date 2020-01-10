@@ -3,8 +3,8 @@ const rp = require('request-promise-native')
 const gerarToken =  async (req,res,next) => {
     const basicUrl = "https://api.juno.com.br/authorization-server/oauth/token"
     const url = `${basicUrl}?grant_type=client_credentials`
-    const username = process.env.user2
-    const password = process.env.pdw2
+    const username = process.env.user
+    const password = process.env.pwd
     const auth = "Basic " + new Buffer.from(username + ":" + password).toString("base64");
     let options = {
         method: 'POST',
