@@ -16,7 +16,6 @@ const gerarToken =  async (req,res,next) => {
         json: true
     };
     try {
-        console.log(url)
         let data = await rp(options)
         res.locals.accessToken = `Bearer ${data.access_token}`
     } catch (err) {
