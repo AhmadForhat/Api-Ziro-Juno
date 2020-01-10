@@ -9,9 +9,9 @@ const pesquisaCharges =  async (req,res) => {
         res.json(data)
     } catch (error) {
         if(error.error.details != ""){
-            res.json(error.error)
+            res.status(error.error.status).send({"Erro de requisição": error.error})
         }else{
-            res.json(error)
+            res.status(error.error.status).send(error)
         }
     }
 }

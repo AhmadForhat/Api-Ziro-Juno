@@ -22,9 +22,9 @@ const geracaoToken =  async (req,res,next) => {
     } catch (err) {
         console.log("Deu erro")
             if(err.error != ""){
-                res.json({"Erro na geração do token": err.error})
+                res.status(err.error.status).json({"Erro na geração do token": err.error})
             }else{
-                res.json(err)
+                res.status(err.error.status).json(err)
             } 
     }
     next()
