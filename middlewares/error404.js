@@ -1,7 +1,5 @@
-const express = require('express');
-
-const badRequest = async (req, res) => {s
+const error404 = async (req, res) => {
 	res.status(404).send('Rota inválida. Favor consultar a documentação https://documenter.getpostman.com/view/9467330/SWECVaMU?version=latest')
 }
 
-module.exports = badRequest
+module.exports = error404

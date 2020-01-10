@@ -1,11 +1,11 @@
-const gerarOptions = require('./gerarRequest')
+const gerarOptions = require('../utils/gerarOptions')
 
-const pesquisaCharges =  async (req,res) => {
+const listaCobrancas =  async (req,res) => {
     try {
         const auth = res.locals.accessToken
         const query = " "
-        const endPoint = `charges/${(req.query.id)}`
-        const data = await gerarOptions(query,auth,endPoint,"GET")
+        const endPoint = `charges/${(req.query.id)}/cancelation`
+        const data = await gerarOptions(query,auth,endPoint,"PUT")
         res.json(data)
     } catch (error) {
         if(error.error.details != ""){
@@ -16,4 +16,4 @@ const pesquisaCharges =  async (req,res) => {
     }
 }
 
-module.exports = pesquisaCharges
+module.exports = listaCobrancas

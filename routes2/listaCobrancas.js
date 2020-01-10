@@ -1,5 +1,5 @@
 const querystring = require('querystring')
-const gerarOptions = require('./gerarRequest')
+const gerarOptions = require('../utils/gerarOptions')
 
 const consultaCharges =  async (req,res) => {
     try {

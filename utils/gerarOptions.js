@@ -2,7 +2,7 @@ const rp = require('request-promise-native')
 
 const gerarOptions = (query,auth,endPoint,method) => {
     const tokenJuno = process.env.TOKEN
-    const basicUrl = `https://sandbox.boletobancario.com/api-integration/${endPoint}`
+    const basicUrl = `https://api.juno.com.br/api-integration/${endPoint}`
     const url = `${basicUrl}?${query}`
     let options = {
         method: method,

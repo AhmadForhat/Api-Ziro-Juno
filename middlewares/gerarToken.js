@@ -1,8 +1,8 @@
 const rp = require('request-promise-native')
 require('dotenv').config()
 
-const geracaoToken =  async (req,res,next) => {
-    const basicUrl = "https://sandbox.boletobancario.com/authorization-server/oauth/token"
+const gerarToken =  async (req,res,next) => {
+    const basicUrl = "https://api.juno.com.br/authorization-server/oauth/token"
     const url = `${basicUrl}?grant_type=client_credentials`
     const username = process.env.user2
     const password = process.env.pdw2
@@ -17,6 +17,7 @@ const geracaoToken =  async (req,res,next) => {
         json: true
     };
     try {
+        console.log(url)
         let data = await rp(options)
         res.locals.accessToken = `Bearer ${data.access_token}`
     } catch (err) {
@@ -30,4 +31,4 @@ const geracaoToken =  async (req,res,next) => {
     next()
 }
 
-module.exports = geracaoToken
+module.exports = gerarToken
